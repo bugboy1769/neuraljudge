@@ -2,7 +2,7 @@
 
 **Judge-0** is a local, configurable evaluation framework for LLM outputs (e.g., RAG systems). It replaces subjective "vibe checks" with a deterministic, weighted scoring system based on the **Logic Score Method**.
 
-## 🧠 The Theory: Logic Score Method
+## The Theory: Logic Score Method
 
 This project implements the evaluation framework proposed in **[A Proposed Logic Score Method for LLM Inferencing](https://shwetabhsingh.substack.com/p/a-proposed-logic-score-method-for)**.
 
@@ -17,7 +17,7 @@ $$ Score = \sum_{i=1}^{n} (Weight_i \times LabelScore_i) $$
 
 We use **Fuzzy Matching** to map the Judge LLM's natural language output to the strict scoring rubric, ensuring robustness against minor variations in the model's response.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Prerequisites
 -   **Python 3.10+**
@@ -41,7 +41,7 @@ streamlit run app.py
 3.  **Configure**: Adjust the Constraints (Rules) and their Weights.
 4.  **Judge**: Click "Run Evaluation" to see the Radar Chart and Score Breakdown.
 
-## 🛠️ Tech Stack
+## Tech Stack
 -   **Engine**: `llama-cpp-python` (Local Inference)
 -   **Logic**: `numpy` & `fuzzywuzzy` (Scoring & Robustness)
 -   **UI**: `Streamlit` & `Plotly` (Dashboard & Visualization)

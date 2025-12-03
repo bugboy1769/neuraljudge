@@ -4,7 +4,7 @@
 
 ## The Theory: Logic Score Method
 
-This project implements the evaluation framework proposed in **[A Proposed Logic Score Method for LLM Inferencing](https://shwetabhsingh.substack.com/p/a-proposed-logic-score-method-for)**.
+This project implements the evaluation framework proposed by me in **[A Proposed Logic Score Method for LLM Inferencing](https://shwetabhsingh.substack.com/p/a-proposed-logic-score-method-for)**.
 
 Instead of asking an LLM for a generic score (which is prone to hallucination and inconsistency), Judge-0 breaks evaluation into two vectors:
 

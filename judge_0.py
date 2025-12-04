@@ -85,3 +85,51 @@ class LogicScore:
             ]
 
         }
+    
+    def tune_weights(self, breakdown: List[Dict[str, Any]], target_score: float, alpha: float = 0.01) -> List[Constraint]:
+        """
+        Adjust weights using Gradient Descent
+            Args:
+                breakdown: 'breakdown' list from score() result.
+                target_score: Ground truth score from end user.
+                alpha: Learning rate.
+            Returns:
+                List of updated Constraint objects.
+        """
+        #1. Calculate Error Term
+        
+        current_raw_score=sum(item['weighted_score'] for item in breakdown)
+
+        # We need to convert target_score to raw target
+        max_label_val=max(self.label_map.values()) if self.label_map else 1.0
+        total_weight=sum(c.weight for c in self.constraints)
+        max_possible=total_weight*max_label_val
+
+        #target raw = (target%/100)*max_possible
+        target_raw=target_score*max_possible/100
+
+        #delta
+        delta=target_raw-current_raw_score
+
+        updated_constraints=[]
+
+        #2. Update Weights
+        for i, item in enumerate(breakdown):
+            c=self.constraints[i]
+            x_i=item['score']
+
+            #Update Rule: w_new = w_old + alpha * delta * input
+            #Normalise alpha by dividing by number of constraints to keep gradient stable
+            weight_change = (alpha / len(self.constraints)) * delta * x_i
+
+            new_weight=c.weight+weight_change
+
+            #Clip weights
+            new_weight=max(0.0, min(2.0, new_weight))
+
+            #Update Constraint object
+            c.weight=round(new_weight, 4)
+            updated_constraints.append(c)
+        
+        return updated_constraints
+

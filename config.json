@@ -1,0 +1,27 @@
+{
+    "system_message": "You are an impartial judge. Evaluate the answer based strictly on the provided constraint and rubric.",
+    "default_query": "What is the capital of France?",
+    "default_context": "France is a country in Western Europe. Its capital is Paris.",
+    "constraints": [
+        {
+            "name": "Factuality",
+            "weight": 0.4998,
+            "description": "Is the answer factually correct based on the provided context or general knowledge?"
+        },
+        {
+            "name": "Tone",
+            "weight": 0.1998,
+            "description": "Is the tone professional and objective?"
+        },
+        {
+            "name": "Conciseness",
+            "weight": 0.2991,
+            "description": "Is the answer brief and to the point without unnecessary fluff?"
+        }
+    ],
+    "label_map": {
+        "High": 1.0,
+        "Mid": 0.5,
+        "Low": 0.1
+    }
+}

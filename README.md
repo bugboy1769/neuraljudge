@@ -41,6 +41,22 @@ streamlit run app.py
 3.  **Configure**: Adjust the Constraints (Rules) and their Weights.
 4.  **Judge**: Click "Run Evaluation" to see the Radar Chart and Score Breakdown.
 
+## Neural Tuning (Backpropagation)
+
+Judge-0 includes a weight optimization engine inspired by neural networks.
+
+**The Concept**: The evaluation process is modeled as a single linear neuron where inputs are the Judge's scores and weights are the constraint importance.
+$$ Score = \sum (w_i \cdot x_i) $$
+
+**Design Choice**: We use a "White-Box" linear layer instead of a black-box neural network to maintain interpretability. The weights directly correspond to human-understandable constraints (e.g., Factuality).
+
+**Mechanism**:
+1.  **Forward Pass**: The system calculates a predicted score based on current weights.
+2.  **Loss Calculation**: The user provides a "Ground Truth" score. The system calculates the error (Delta).
+3.  **Backpropagation**: Weights are updated using Gradient Descent.
+    $$ w_i^{new} = w_i + \alpha \cdot (Score_{target} - Score_{predicted}) \cdot x_i $$
+    This ensures credit assignment: only constraints that contributed to the score (active inputs) are updated.
+
 ## Tech Stack
 -   **Engine**: `llama-cpp-python` (Local Inference)
 -   **Logic**: `numpy` & `fuzzywuzzy` (Scoring & Robustness)

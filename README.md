@@ -56,9 +56,9 @@ $$ Score = \sum (w_i \cdot x_i) $$
 2.  **Loss Calculation**: The user provides a "Ground Truth" score. The system calculates the error (Delta).
 3.  **Backpropagation**: Weights are updated using Gradient Descent.
 
-    $$ w_i^{new} = w_i + \alpha \cdot (Score_{target} - Score_{predicted}) \cdot x_i $$
+$$ w_i^{new} = w_i + \alpha \cdot (Score_{target} - Score_{predicted}) \cdot x_i $$
 
-    This ensures credit assignment: only constraints that contributed to the score (active inputs) are updated.
+This ensures credit assignment: only constraints that contributed to the score (active inputs) are updated.
 
 ## Tech Stack
 -   **Engine**: `llama-cpp-python` (Local Inference)

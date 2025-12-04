@@ -46,6 +46,7 @@ streamlit run app.py
 Judge-0 includes a weight optimization engine inspired by neural networks.
 
 **The Concept**: The evaluation process is modeled as a single linear neuron where inputs are the Judge's scores and weights are the constraint importance.
+
 $$ Score = \sum (w_i \cdot x_i) $$
 
 **Design Choice**: We use a "White-Box" linear layer instead of a black-box neural network to maintain interpretability. The weights directly correspond to human-understandable constraints (e.g., Factuality).

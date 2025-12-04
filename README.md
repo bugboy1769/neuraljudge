@@ -57,7 +57,7 @@ $$ Score = \sum (w_i \cdot x_i) $$
 3.  **Backpropagation**: Weights are updated using Gradient Descent.
 
     $$ w_i^{new} = w_i + \alpha \cdot (Score_{target} - Score_{predicted}) \cdot x_i $$
-    
+
     This ensures credit assignment: only constraints that contributed to the score (active inputs) are updated.
 
 ## Tech Stack

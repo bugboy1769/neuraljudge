@@ -1,0 +1,52 @@
+[
+    {
+        "question": "Explain the concept of backpropagation in neural networks.",
+        "context": "",
+        "answer": "Backpropagation is an algorithm used to train neural networks by computing gradients of the loss function with respect to each weight. It works by applying the chain rule from calculus, propagating error signals backwards from the output layer to the input layer. During the forward pass, inputs flow through the network to produce predictions. The loss is computed comparing predictions to targets. During the backward pass, gradients are calculated layer by layer, starting from the output. These gradients indicate how much each weight contributed to the error. Weights are then updated using gradient descent to minimize the loss."
+    },
+    {
+        "question": "What is the difference between supervised and unsupervised learning?",
+        "context": "",
+        "answer": "Supervised learning uses labeled data where each input has a corresponding target output. The model learns to map inputs to outputs. Examples include classification and regression. Unsupervised learning works with unlabeled data, finding patterns and structure without explicit targets. Examples include clustering and dimensionality reduction."
+    },
+    {
+        "question": "Describe the vanishing gradient problem and how it affects deep networks.",
+        "context": "",
+        "answer": "The vanishing gradient problem occurs when gradients become extremely small as they are propagated back through many layers. This happens because gradients are multiplied at each layer during backpropagation. With activation functions like sigmoid that squash values to a small range, these products shrink exponentially. Deep networks suffer most because gradients become negligible by the time they reach early layers, preventing those layers from learning. Solutions include ReLU activations, batch normalization, skip connections (ResNets), and proper weight initialization."
+    },
+    {
+        "question": "What is dropout and why is it used?",
+        "context": "",
+        "answer": "Dropout is a regularization technique where random neurons are temporarily removed during training with some probability p (typically 0.5). This prevents neurons from co-adapting and forces the network to learn more robust features. At test time, all neurons are used but weights are scaled by (1-p). Dropout acts as an ensemble method, approximating the averaging of many different network architectures."
+    },
+    {
+        "question": "Explain the attention mechanism in transformers.",
+        "context": "",
+        "answer": "Attention allows models to focus on relevant parts of the input when producing each output element. In transformers, self-attention computes query, key, and value vectors for each position. Attention weights are calculated as softmax of query-key dot products, scaled by the square root of dimension. The output is a weighted sum of values. Multi-head attention runs multiple attention operations in parallel with different learned projections, capturing different types of relationships."
+    },
+    {
+        "question": "What is batch normalization and why does it help training?",
+        "context": "",
+        "answer": "Batch normalization normalizes layer inputs across the batch dimension, subtracting the mean and dividing by standard deviation. It then applies learned scale and shift parameters. This reduces internal covariate shift, allowing higher learning rates and faster convergence. It also acts as a regularizer. During inference, running statistics are used instead of batch statistics."
+    },
+    {
+        "question": "Describe the difference between RNNs and LSTMs.",
+        "context": "",
+        "answer": "RNNs process sequences by maintaining a hidden state that is updated at each timestep. However, they struggle with long-range dependencies due to vanishing gradients. LSTMs solve this with a gating mechanism including input, forget, and output gates that control information flow. A cell state runs through the entire sequence with minimal modification, allowing gradients to flow more easily over long sequences."
+    },
+    {
+        "question": "What is transfer learning and when would you use it?",
+        "context": "",
+        "answer": "Transfer learning reuses a model trained on one task for a different but related task. A model pretrained on a large dataset like ImageNet learns general features that transfer well. For a new task with limited data, you can freeze early layers and fine-tune later layers, or fine-tune the entire network with a low learning rate. This is useful when you have limited labeled data for your target task."
+    },
+    {
+        "question": "Explain the concept of embedding in NLP.",
+        "context": "",
+        "answer": "Embeddings are dense vector representations of discrete tokens like words. Unlike one-hot encoding, embeddings capture semantic relationships in a low-dimensional space. Similar words have similar vectors. Word2Vec and GloVe learn embeddings from co-occurrence patterns. In neural networks, embedding layers map token indices to learned vectors. Contextual embeddings from models like BERT produce different vectors for the same word in different contexts."
+    },
+    {
+        "question": "What is the purpose of the softmax function?",
+        "context": "",
+        "answer": "Softmax converts a vector of real numbers into a probability distribution. Each output is positive and all outputs sum to one. It exponentiates each input and divides by the sum of all exponentiated values. In classification, softmax produces class probabilities from logits. During training with cross-entropy loss, it provides gradients that push up the correct class probability and push down others."
+    }
+]

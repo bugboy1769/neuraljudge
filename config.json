@@ -1,22 +1,27 @@
 {
-    "system_message": "You are an impartial judge. Evaluate the answer based strictly on the provided constraint and rubric.",
-    "default_query": "What is the capital of France?",
-    "default_context": "France is a country in Western Europe. Its capital is Paris.",
+    "system_message": "You are an impartial judge evaluating Machine Learning and Deep Learning content. Evaluate the answer based strictly on the provided constraint.",
+    "default_query": "Explain the concept of backpropagation in neural networks.",
+    "default_context": "",
     "constraints": [
         {
-            "name": "Factuality",
-            "weight": 0.4998,
-            "description": "Is the answer factually correct based on the provided context or general knowledge?"
+            "name": "Technical Accuracy",
+            "weight": 0.4,
+            "description": "Is the ML/DL concept explained correctly with accurate terminology and no factual errors?"
         },
         {
-            "name": "Tone",
-            "weight": 0.1998,
-            "description": "Is the tone professional and objective?"
+            "name": "Clarity",
+            "weight": 0.25,
+            "description": "Is the explanation clear, well-structured, and easy to understand?"
         },
         {
-            "name": "Conciseness",
-            "weight": 0.2991,
-            "description": "Is the answer brief and to the point without unnecessary fluff?"
+            "name": "Depth",
+            "weight": 0.2,
+            "description": "Does the answer cover the topic thoroughly with sufficient detail?"
+        },
+        {
+            "name": "Practical Relevance",
+            "weight": 0.15,
+            "description": "Does the answer mention real-world applications, code examples, or practical considerations?"
         }
     ],
     "label_map": {

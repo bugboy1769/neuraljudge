@@ -126,27 +126,31 @@ def main():
     parser.add_argument("--lr-decay", type=float, default=0.5, help="Learning rate decay per epoch")
     parser.add_argument("--student-model", type=str, required=True, help="Path to Student GGUF model")
     parser.add_argument("--teacher-url", type=str, default="http://localhost:8000", help="vLLM server URL")
+    parser.add_argument("--teacher-model", type=str, default="meta-llama/Meta-Llama-3-8B", help="Name of the teacher model on vLLM")
     parser.add_argument("--n-ctx", type=int, default=2048, help="Context window size")
+    parser.add_argument("--gpu-layers", type=int, default=-1, help="Number of layers to offload to GPU (-1 for all)")
     
     args = parser.parse_args()
     
     # Load config
-    print(f"Loading config from {args.config}...")
-    with open(args.config, 'r') as f:
+    config_path = os.path.abspath(args.config)
+    print(f"Loading config from {config_path}...")
+    with open(config_path, 'r') as f:
         config = json.load(f)
     
     # Load dataset
-    print(f"Loading dataset from {args.dataset}...")
-    dataset = load_dataset(args.dataset)
+    dataset_path = os.path.abspath(args.dataset)
+    print(f"Loading dataset from {dataset_path}...")
+    dataset = load_dataset(dataset_path)
     print(f"  Loaded {len(dataset)} samples")
     
     # Initialize Student LLM
     print(f"Loading Student model: {args.student_model}...")
-    student_llm = LlamaWrapper(args.student_model, n_ctx=args.n_ctx)
+    student_llm = LlamaWrapper(args.student_model, n_ctx=args.n_ctx, n_gpu_layers=args.gpu_layers)
     
     # Initialize Teacher LLM
-    print(f"Connecting to Teacher LLM at {args.teacher_url}...")
-    teacher_llm = TeacherLLM(base_url=args.teacher_url)
+    print(f"Connecting to Teacher LLM at {args.teacher_url} (Model: {args.teacher_model})...")
+    teacher_llm = TeacherLLM(base_url=args.teacher_url, model_name=args.teacher_model)
     if not teacher_llm.health_check():
         print("WARNING: Teacher LLM server not responding. Make sure vLLM is running.")
     
